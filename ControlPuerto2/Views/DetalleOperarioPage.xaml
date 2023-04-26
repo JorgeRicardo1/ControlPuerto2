@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:ControlPuerto2.ViewModels"
+             x:Class="ControlPuerto2.Views.DetalleOperarioPage">
+    <ContentPage.BindingContext>
+        <ViewModel:OperarioDetalleViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="labelInfo">
+                <Setter Property="FontAttributes" Value="None"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid Margin="5" BackgroundColor="#E8E8E8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Text="{Binding Operario.nombre}" FontSize="20"/>
+        <CollectionView Grid.Row="1" Margin="10,0,0,0" ItemsSource="{Binding Barcos}" EmptyView="No hay barcos asignados para este operario">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Frame Margin="10" CornerRadius="20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="4*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="crucero.png" WidthRequest="40"
+                                           Margin="0,0,10,0"/>
+                                <StackLayout Grid.Column="1" Margin="10,0,0,0">
+                                    <Label Text="Id:" Style="{StaticResource Key=labelInfo}"/>
+                                    <Label Text="Nombre:" Style="{StaticResource Key=labelInfo}"/>
+                                    <Label Text="Omi:" Style="{StaticResource Key=labelInfo}"/>
+                                    <Label Text="Arrivo:" Style="{StaticResource Key=labelInfo}"/>
+                                </StackLayout>
+                                <StackLayout Grid.Column="2">
+                                    <Label Text="{Binding id_nave}" Style="{StaticResource Key=labelInfo}"/>
+                                    <Label Text="{Binding nav_nombre}" Style="{StaticResource Key=labelInfo}"/>
+                                    <Label Text="{Binding nav_omi}" Style="{StaticResource Key=labelInfo}"/>
+                                    <Label Text="{Binding nav_Afecha, StringFormat='{0:d}'}" Style="{StaticResource Key=labelInfo}"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

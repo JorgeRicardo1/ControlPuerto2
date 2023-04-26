@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:ControlPuerto2.ViewModels"
+             x:Class="ControlPuerto2.Views.OperariosPage">
+    <ContentPage.BindingContext>
+        <ViewModels:OperarioViewModel/>
+    </ContentPage.BindingContext>
+    <Grid BackgroundColor="#E8E8E8" Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Text="Lista de operarios" FontSize="25" />
+        <CollectionView Grid.Row="1"  ItemsSource="{Binding Operarios}" x:Name="operarios_list">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Frame Margin="10" CornerRadius="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="3*"/>
+                                    <RowDefinition Height="7*"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="{Binding nombre}" FontSize="15" Padding="-10,0,0,0"/>
+                                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                                    <BoxView Color="red" WidthRequest="30" HeightRequest="50" VerticalOptions="End"/>
+                                    <BoxView Color="red" WidthRequest="30" HeightRequest="10" VerticalOptions="End"/>
+                                    <BoxView Color="red" WidthRequest="30" HeightRequest="20" VerticalOptions="End"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.IrADetalleOperarioCommand, Source={x:Reference operarios_list}}"
+                                                              CommandParameter="{Binding .}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

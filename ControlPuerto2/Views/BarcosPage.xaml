@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:ControlPuerto2.ViewModels"
+             x:Class="ControlPuerto2.Views.BarcosPage">
+    <ContentPage.BindingContext>
+        <ViewModels:BarcoViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="labelInfo">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="*,auto" BackgroundColor="#E8E8E8">
+        <Grid RowDefinitions="auto,*">
+            <Label Grid.Row="0" Text="Barcos sin asignar" FontSize="35"
+                   FontAttributes="Bold" HorizontalTextAlignment="Center"
+                   IsVisible="{Binding TituloIsVisible}"/>
+            <CollectionView Grid.Row="1" ItemsSource="{Binding BarcoNoAsignados}" x:Name="barcos_list">
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label Text="Felicidades no hay barcos sin asignar"
+                               VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="CenterAndExpand"
+                               FontAttributes="Bold"
+                               FontSize="20"/>
+                        <Image Source="crucero.png" WidthRequest="100"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame Margin="10" CornerRadius="20">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="4*"/>
+                                        <ColumnDefinition Width="4*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="crucero.png" WidthRequest="40"
+                                           Margin="0,0,10,0"/>
+                                    <StackLayout Grid.Column="1" Margin="10,0,0,0">
+                                        <Label Text="Id:" Style="{StaticResource Key=labelInfo}"/>
+                                        <Label Text="Nombre:" Style="{StaticResource Key=labelInfo}"/>
+                                        <Label Text="Omi:" Style="{StaticResource Key=labelInfo}"/>
+                                        <Label Text="Arrivo:" Style="{StaticResource Key=labelInfo}"/>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="2">
+                                        <Label Text="{Binding id_nave}" Style="{StaticResource Key=labelInfo}"/>
+                                        <Label Text="{Binding nav_nombre}" Style="{StaticResource Key=labelInfo}"/>
+                                        <Label Text="{Binding nav_omi}" Style="{StaticResource Key=labelInfo}"/>
+                                        <Label Text="{Binding nav_Afecha, StringFormat='{0:d}'}" Style="{StaticResource Key=labelInfo}"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.IrAsignacionBarcoCommand, Source={x:Reference barcos_list}}"
+                                                              CommandParameter="{Binding .}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <Button Grid.Row="1" Text="Actualizar" Command="{Binding ObtenerBarcosCommand}" Margin="10"/>
+    </Grid>
+</ContentPage>

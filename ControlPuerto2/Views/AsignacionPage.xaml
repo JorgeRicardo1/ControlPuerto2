@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:ControlPuerto2.ViewModels"
+             x:Class="ControlPuerto2.Views.AsignacionPage">
+    <ContentPage.BindingContext>
+        <ViewModels:AsignacionViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="labelInfo">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--Grid principal-->
+    <Grid BackgroundColor="#E8E8E8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Encabezado de barco seleccionado start-->
+        <StackLayout Grid.Row="0">
+            <Frame Margin="20" CornerRadius="20" Padding="10">
+                <StackLayout>
+                    <Label Text="BARCO A ASIGNAR" Style="{StaticResource Key=labelInfo}" HorizontalOptions="FillAndExpand"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="crucero.png" WidthRequest="40"
+                                           Margin="0,0,10,0"/>
+                        <StackLayout Grid.Column="1" Margin="10,0,0,0">
+                            <Label Text="Id:" Style="{StaticResource Key=labelInfo}"/>
+                            <Label Text="Nombre:" Style="{StaticResource Key=labelInfo}"/>
+                            <Label Text="Omi:" Style="{StaticResource Key=labelInfo}"/>
+                            <Label Text="Arrivo:" Style="{StaticResource Key=labelInfo}"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2">
+                            <Label Text="{Binding IdBarco}" Style="{StaticResource Key=labelInfo}"/>
+                            <Label Text="{Binding Barco.nav_nombre}" Style="{StaticResource Key=labelInfo}"/>
+                            <Label Text="{Binding Barco.nav_omi}" Style="{StaticResource Key=labelInfo}"/>
+                            <Label Text="{Binding Barco.nav_Afecha, StringFormat='{0:d}'}" Style="{StaticResource Key=labelInfo}"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        <!--Encabezado de barco seleccionado end-->
+        </StackLayout>
+        <!--Lista de operarios start-->
+        <StackLayout Grid.Row="1">
+            <Label Text="Lista de Operarios:"/>
+            <CollectionView  ItemsSource="{Binding Operarios}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame Margin="10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="4*"/>
+                                        <ColumnDefinition Width="4*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="marinero.png" WidthRequest="40"
+                                           Margin="0,0,10,0" />
+                                    <StackLayout Grid.Column="1">
+                                        <Label Text="Nombre:" />
+                                        <Label Text="{Binding nombre}" Style="{StaticResource Key=labelInfo}" FontSize="Body"/>
+                                        <Label Text="# Barcos"/>
+                                        <Label Text="{Binding BarcosAsignados}" Style="{StaticResource Key=labelInfo}" FontSize="Body" Margin="10,0,0,0"/>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="2" Orientation="Horizontal" VerticalOptions="Center" Margin="10,0,10,0">
+                                        <ImageButton Source="ver.png" WidthRequest="45" HorizontalOptions="StartAndExpand"
+                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:AsignacionViewModel}}, Path=IrADetalleOperarioCommand}"
+                                                     CommandParameter="{Binding .}"/>
+                                        <ImageButton Source="asignar.png"  WidthRequest="45" HorizontalOptions="End"
+                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:AsignacionViewModel}}, Path=AsignarOperarioCommand}"
+                                                     CommandParameter="{Binding .}"/>
+                                        
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <!--Lista de operarios end-->
+            </CollectionView>
+        </StackLayout>
+    </Grid>
+    
+</ContentPage>
