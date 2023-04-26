@@ -71,6 +71,7 @@ namespace ControlPuerto2.ViewModels
 
         public async Task IrAsignacionBarco(BbbarcosModel barcoSelected)
         {
+            IsBusy = true;
             string ruta = $"/{nameof(AsignacionPage)}?IdBarco={barcoSelected.id_nave}";
             await Shell.Current.GoToAsync(ruta);
         }
