@@ -43,6 +43,7 @@ namespace ControlPuerto2.Services
                         operarios.Add(operario);
                     }
                 }
+                DataConexion.cerrar();
                 return operarios;
             }
 			catch (Exception)
@@ -79,6 +80,7 @@ namespace ControlPuerto2.Services
                         operario.email = reader.GetString("email");
 
                     }
+                    DataConexion.cerrar();
                     return operario;
                 }
                 return null;

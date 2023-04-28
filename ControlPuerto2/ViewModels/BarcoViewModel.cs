@@ -75,6 +75,7 @@ namespace ControlPuerto2.ViewModels
             string ruta = $"/{nameof(AsignacionPage)}?IdBarco={barcoSelected.id_nave}";
             await Task.Delay(500);
             IsBusy = false;
+            
             await Shell.Current.GoToAsync(ruta);
         }
 

@@ -14,6 +14,7 @@ namespace ControlPuerto2
 
             Routing.RegisterRoute(nameof(AsignacionPage), typeof(AsignacionPage));
             Routing.RegisterRoute(nameof(DetalleOperarioPage), typeof(DetalleOperarioPage));
+            Routing.RegisterRoute(nameof(DocumentosBarcoPage), typeof(DocumentosBarcoPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

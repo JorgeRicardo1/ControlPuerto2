@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:ControlPuerto2.ViewModels"
+             x:Class="ControlPuerto2.Views.DocumentosBarcoPage">
+    <ContentPage.BindingContext>
+        <ViewModels:DocumentosBarcoViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Text="Nombre" Grid.Column="0" Grid.Row="0"/>
+        <Label Text="Descripcion" Grid.Column="1" Grid.Row="0"/>
+        <Label Text="url" Grid.Column="2" Grid.Row="0"/>
+        <CollectionView  ItemsSource="{Binding Documentos}" Grid.Row="1" Grid.ColumnSpan="3" x:Name="docs_list">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Frame>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding doc_nombre}" Grid.Column="0"/>
+                                <Label Text="{Binding doc_descripcion}" Grid.Column="1"/>
+                                <Label Text="{Binding doc_url}" Grid.Column="2"/>
+                            </Grid>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.IrAUrlCommand, Source={x:Reference docs_list}}"
+                                                              CommandParameter="{Binding doc_url}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

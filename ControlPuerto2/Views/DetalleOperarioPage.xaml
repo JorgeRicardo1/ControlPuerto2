@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModel="clr-namespace:ControlPuerto2.ViewModels"
-             x:Class="ControlPuerto2.Views.DetalleOperarioPage">
+             x:Class="ControlPuerto2.Views.DetalleOperarioPage"
+             x:Name="ControlPuerto2">
     <ContentPage.BindingContext>
         <ViewModel:OperarioDetalleViewModel/>
     </ContentPage.BindingContext>
@@ -20,12 +21,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Text="{Binding Operario.nombre}" FontSize="20"/>
-        <CollectionView Grid.Row="1" Margin="10,0,0,0" ItemsSource="{Binding Barcos}" EmptyView="No hay barcos asignados para este operario">
+        <CollectionView Grid.Row="1" x:Name="barcos_list" Margin="10,0,0,0" ItemsSource="{Binding Barcos}" EmptyView="No hay barcos asignados para este operario">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <StackLayout >
                         <Frame Margin="10" CornerRadius="20">
-                            <Grid>
+                            <Grid >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*"/>
                                     <ColumnDefinition Width="4*"/>
@@ -47,6 +48,10 @@
                                 </StackLayout>
                             </Grid>
                         </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.IraDocumentosBarcoCommand, Source={x:Reference barcos_list}}"
+                                                              CommandParameter="{Binding .}"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
