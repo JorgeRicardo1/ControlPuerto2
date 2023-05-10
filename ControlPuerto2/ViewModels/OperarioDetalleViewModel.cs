@@ -74,7 +74,7 @@ namespace ControlPuerto2.ViewModels
 
         public async Task ObtenerBarcosOperario()
         {
-            Barcos = await BbbarcosServices.GetBarcosOperario(Operario.nombre);
+            Barcos = await BbbarcosServices.GetBarcosOperario(Operario.clave);
         }
 
         public async Task IraDocumentosBarco(BbbarcosModel barcoSelected)
@@ -83,11 +83,21 @@ namespace ControlPuerto2.ViewModels
             string ruta = $"/{nameof(DocumentosBarcoPage)}?IdBarco={barcoSelected.id_nave}";
             await Shell.Current.GoToAsync(ruta);
         }
+
+        public async Task DesasignarBarco(int idNave)
+        {
+            bool respuesta = await DisplayAlert("Aviso", $"Seguro que desea desasignar el barco para el operario {Operario.nombre}", "Si","No");
+            if (respuesta)
+            {
+                await BbbarcosServices.RemoverOperario(idNave.ToString());
+                _ = ObtenerBarcosOperario();
+            }
+        }
         #endregion
 
         #region Comandos
         public ICommand IraDocumentosBarcoCommand => new Command<BbbarcosModel>(async (p) => await IraDocumentosBarco(p));
-
+        public ICommand DesasignarBarcoCommand => new Command<int>(async (p) => await DesasignarBarco(p));
         #endregion
     }
 }

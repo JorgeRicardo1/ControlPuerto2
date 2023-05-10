@@ -147,7 +147,7 @@ namespace ControlPuerto2.Services
             {
                 MySqlConnection conexioBD = await DataConexion.conectar();
 
-                string query = $"UPDATE `b385`.`bbbarcos` SET `nav_asigna` = '{operario.nombre}' WHERE (`id_nave` = '{idNave}');;";
+                string query = $"UPDATE `b385`.`bbbarcos` SET `nav_asigna` = '{operario.clave}' WHERE (`id_nave` = '{idNave}');;";
                 MySqlCommand comando = new MySqlCommand(query, conexioBD);
                 DataConexion.abrir();
                 MySqlDataReader reader = comando.ExecuteReader();
@@ -208,6 +208,25 @@ namespace ControlPuerto2.Services
                 }
                 DataConexion.cerrar();
                 return barcos;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static async Task RemoverOperario(string idNave)
+        {
+            try
+            {
+                MySqlConnection conexionBD = await DataConexion.conectar();
+                string query = $"UPDATE bbbarcos SET nav_asigna = '' WHERE(id_nave = '{idNave}');";
+
+                MySqlCommand comando = new MySqlCommand(query, conexionBD);
+                DataConexion.abrir();
+                MySqlDataReader reader = comando.ExecuteReader();
+
             }
             catch (Exception)
             {

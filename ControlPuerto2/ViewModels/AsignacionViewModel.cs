@@ -75,7 +75,7 @@ namespace ControlPuerto2.ViewModels
         {
             foreach (XxxxciaoModel operario in Operarios)
             {
-                operario.BarcosAsignados = await BbbarcosServices.ContarBarcosOperario(operario.nombre);
+                operario.BarcosAsignados = await BbbarcosServices.ContarBarcosOperario(operario.clave);
             }
         }
 

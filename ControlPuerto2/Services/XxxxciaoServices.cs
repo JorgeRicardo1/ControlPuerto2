@@ -19,7 +19,7 @@ namespace ControlPuerto2.Services
                 MySqlConnection conexionBD = await DataConexion.conectar();
                 ObservableCollection<XxxxciaoModel> operarios = new ObservableCollection<XxxxciaoModel>();
 
-                MySqlCommand comando = new MySqlCommand("SELECT * FROM xxxxciao", conexionBD);
+                MySqlCommand comando = new MySqlCommand("SELECT * FROM xxxxciao WHERE nroprint = '13'", conexionBD);
                 DataConexion.abrir();
                 MySqlDataReader reader = comando.ExecuteReader();
                 if (reader.HasRows)

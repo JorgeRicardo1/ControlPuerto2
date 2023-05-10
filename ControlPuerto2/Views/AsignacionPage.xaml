@@ -24,7 +24,7 @@
         <StackLayout Grid.Row="0">
             <Frame Margin="20" CornerRadius="20" Padding="10">
                 <StackLayout>
-                    <Label Text="BARCO A ASIGNAR" Style="{StaticResource Key=labelInfo}" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="NAVE A ASIGNAR" Style="{StaticResource Key=labelInfo}" HorizontalOptions="FillAndExpand"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>

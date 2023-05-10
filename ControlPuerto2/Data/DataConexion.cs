@@ -9,7 +9,7 @@ namespace ControlPuerto2.Data
     public class DataConexion
     {
         public static MySqlConnection conexionBD { get; set; }
-        private static string connectionString = "Database = b385; Data Source = 192.168.1.189; User Id = victor; Password= 123456";
+        private static string connectionString = "Database = b385; Data Source = 192.168.1.100; User Id = root; Password= *Qwerty1*";
 
         public static async Task<MySqlConnection> conectar()
         {
