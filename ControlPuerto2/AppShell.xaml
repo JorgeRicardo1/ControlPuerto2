@@ -73,6 +73,10 @@
         </ResourceDictionary>
     </Shell.Resources>
 
+
+    <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
+    </ShellItem>
     <!-- 
         When the Flyout is visible this defines the content to display in the flyout.
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
@@ -82,7 +86,7 @@
         <ShellContent Route="BarcosPage" ContentTemplate="{DataTemplate local:BarcosPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Operarios" Icon="icon_feed.png">
+    <FlyoutItem Title="Operarios" Icon="icon_feed.png"> 
         <ShellContent Route="OperariosPage" ContentTemplate="{DataTemplate local:OperariosPage}" />
     </FlyoutItem>
 

@@ -17,6 +17,10 @@ namespace ControlPuerto2.Models
         public string telefono { get; set; }
         public string celular { get; set; }
         public string email { get; set; }
+        public int status { get; set; }
+        public int nivel { get; set; }
+        public int nroprint { get; set; }
+        public string pw { get; set; }
 
         //Para saber cuantos barcos tiene asignados(NO ESTA EN LA BD)
         public int BarcosAsignados { get; set; }

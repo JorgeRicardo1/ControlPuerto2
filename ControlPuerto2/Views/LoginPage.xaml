@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlPuerto2.Views.LoginPage"
+             xmlns:ViewModels="clr-namespace:ControlPuerto2.ViewModels"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <ViewModels:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <Grid Padding="0,80,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Frame Grid.Row="0" HasShadow="True" Margin="10" BackgroundColor="White" Opacity="0.8" CornerRadius="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0">
+                    <Image Source="Logo_ADEZ.png"/>
+                </StackLayout>
+                <StackLayout Grid.Row="1">
+                    <Label Text="Bienvenido" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Grid.Row="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Seleccione el operario" TextColor="Black" FontAttributes="Bold"/>
+                        <Frame Grid.Row="1" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
+                            <Picker TextColor="White" Title="Selecione Operario" ItemsSource="{Binding Operarios}" ItemDisplayBinding="{Binding nombre}"
+                                        SelectedItem="{Binding OperarioSelected}">
+                            </Picker>
+                        </Frame>
+                        <Frame Grid.Row="2" Padding="5,-5,5,-3" BackgroundColor="Black" Opacity="0.6" CornerRadius="10">
+                            <Entry Placeholder="Contraseña" TextColor="White" IsPassword="True" PlaceholderColor="White" Text="{Binding ClaveOperario}"/>
+                        </Frame>
+                        <Button   Grid.Row="3" Text="Entrar" CornerRadius="15" Command="{Binding ValidarOperarioCommand}"/>
+                    </Grid>
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>

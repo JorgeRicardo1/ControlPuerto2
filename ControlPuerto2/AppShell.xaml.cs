@@ -21,5 +21,10 @@ namespace ControlPuerto2
         {
             await Shell.Current.GoToAsync("//LoginPage");
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }

@@ -38,7 +38,10 @@ namespace ControlPuerto2.Services
                             cargo = reader.GetString("cargo"),
                             telefono = reader.GetString("telefono"),
                             celular = reader.GetString("celular"),
-                            email = reader.GetString("email")
+                            email = reader.GetString("email"),
+                            nivel = reader.GetInt32("nivel"),
+                            nroprint = reader.GetInt32("nroprint"),
+                            pw = reader.GetString("pw")
                         };
                         operarios.Add(operario);
                     }
