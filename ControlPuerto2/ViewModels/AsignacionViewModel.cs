@@ -21,6 +21,7 @@ namespace ControlPuerto2.ViewModels
         private string _idBarco;
         private BbbarcosModel _barco;
         private ObservableCollection<XxxxciaoModel> _operarios;
+        private bool _isVisibleAsignar;
 
         #endregion
 
@@ -30,7 +31,9 @@ namespace ControlPuerto2.ViewModels
         {
             _ = ObtenerOperarios();
             _ = ContarBarXOperario();
-            
+            CheckPermisos();
+
+
         }
         #endregion
 
@@ -51,6 +54,12 @@ namespace ControlPuerto2.ViewModels
         {
             get { return _operarios; }
             set { SetProperty(ref _operarios, value); }
+        }
+
+        public bool IsVisibleAsignar
+        {
+            get { return _isVisibleAsignar; }
+            set { SetProperty(ref _isVisibleAsignar, value); }
         }
         #endregion
 
@@ -110,6 +119,17 @@ namespace ControlPuerto2.ViewModels
             await Shell.Current.GoToAsync(ruta);
         }
 
+        public void CheckPermisos()
+        {
+            if (App.Operario.nivel < 3)
+            {
+                IsVisibleAsignar = false;
+            }
+            else
+            {
+                IsVisibleAsignar = true;
+            }
+        }
         #endregion
 
         #region Comandos

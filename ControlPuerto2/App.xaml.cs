@@ -16,6 +16,7 @@ namespace ControlPuerto2
         public static DataBase Context { get; set; }
         public static SQLiteAsyncConnection Connection { get; set; }
         public static EmpresaModel Empresa { get; set; }
+        public static XxxxciaoModel Operario { get; set; }
         public App()
         {
             InitializeDatabase();

@@ -21,12 +21,14 @@ namespace ControlPuerto2.ViewModels
         XxxxciaoModel _operario;
         ObservableCollection<BbbarcosModel> _barcos;
         ObservableCollection<BbdoctosModel> _documentos;
+        bool _isVisibleRemover;
 
         #endregion
 
         #region Constructor
         public OperarioDetalleViewModel() 
         {
+            CheckearPermisos();
         }
 
         #endregion
@@ -56,6 +58,11 @@ namespace ControlPuerto2.ViewModels
             set { SetProperty(ref _documentos, value); }
         }
 
+        public bool IsVisibleRemover
+        {
+            get { return _isVisibleRemover; }
+            set { SetProperty(ref _isVisibleRemover, value); }
+        }
         #endregion
 
         #region Procesos
@@ -91,6 +98,18 @@ namespace ControlPuerto2.ViewModels
             {
                 await BbbarcosServices.RemoverOperario(idNave.ToString());
                 _ = ObtenerBarcosOperario();
+            }
+        }
+
+        public void CheckearPermisos()
+        {
+            if (App.Operario.nivel >= 4)
+            {
+                IsVisibleRemover = true;
+            }
+            else
+            {
+                IsVisibleRemover= false;
             }
         }
         #endregion

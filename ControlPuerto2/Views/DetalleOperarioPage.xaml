@@ -50,7 +50,8 @@
                                 <Button Text="Remover" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center"
                                         TextTransform="None" BackgroundColor="Red" CornerRadius="10"
                                         Command="{Binding  Source={x:Reference ControlPuerto2}, Path=BindingContext.DesasignarBarcoCommand}"
-                                        CommandParameter="{Binding id_nave}"/>
+                                        CommandParameter="{Binding id_nave}"
+                                        IsVisible="{Binding  Source={x:Reference ControlPuerto2}, Path=BindingContext.IsVisibleRemover}"/>
                             </Grid>
                         </Frame>
                         <StackLayout.GestureRecognizers>

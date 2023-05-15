@@ -74,7 +74,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Label Text="{Binding doc_nombre}" Grid.Column="0" Style="{StaticResource Key=label_texto}" />
                                 <Label Text="{Binding doc_descripcion}" Grid.Column="1" Style="{StaticResource Key=label_texto}"/>
-                                <Label Text="ver" Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                <Label Text="{Binding doc_url}" Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                                        Style="{StaticResource Key=label_texto}"/>
                             </Grid>
                         </Frame>

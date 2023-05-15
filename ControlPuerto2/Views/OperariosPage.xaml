@@ -22,7 +22,13 @@
                                     <RowDefinition Height="3*"/>
                                     <RowDefinition Height="7*"/>
                                 </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Text="{Binding nombre}" FontSize="15" Padding="-10,0,0,0"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding clave}" FontSize="15" Padding="-10,0,0,0"
+                                       HorizontalOptions="End"/>
                                 <StackLayout Grid.Row="1" Orientation="Horizontal">
                                     <BoxView Color="red" WidthRequest="30" HeightRequest="50" VerticalOptions="End"/>
                                     <BoxView Color="red" WidthRequest="30" HeightRequest="10" VerticalOptions="End"/>

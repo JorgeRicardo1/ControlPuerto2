@@ -69,7 +69,11 @@ namespace ControlPuerto2.ViewModels
 
         public async Task IrAUrl(string url)
         {
-            await Browser.OpenAsync(url);
+            string nuevoHost = "192.168.1.100:81";
+
+            // Reemplazar "http://Archivos" con "http://192.168.1.100/Archivos"
+            string nuevaUrl = url.Replace("http://Archivos", "http://" + nuevoHost + "/Archivos");
+            await Browser.OpenAsync(nuevaUrl);
         }
 
         #endregion

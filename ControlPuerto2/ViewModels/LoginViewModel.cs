@@ -65,6 +65,7 @@ namespace ControlPuerto2.ViewModels
             {
                 if (OperarioSelected.pw == ClaveOperario)
                 {
+                    App.Operario = OperarioSelected;
                     await IrABarcosPage();
                 }
                 else
