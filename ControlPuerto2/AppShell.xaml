@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:viewModels="clr-namespace:ControlPuerto2.ViewModels"
        xmlns:local="clr-namespace:ControlPuerto2.Views"
        Title="ControlPuerto2"
        x:Class="ControlPuerto2.AppShell">
@@ -10,7 +11,9 @@
     
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
-
+    <Shell.BindingContext>
+        <viewModels:AppShellViewModel/>
+    </Shell.BindingContext>
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
@@ -74,6 +77,10 @@
     </Shell.Resources>
 
 
+    <ShellItem Route="ValidacionPage" FlyoutItemIsVisible="False" IsVisible="{Binding IsValidacionVisible}">
+        <ShellContent ContentTemplate="{DataTemplate local:ValidacionPage}"/>
+    </ShellItem>
+    
     <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
         <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
     </ShellItem>

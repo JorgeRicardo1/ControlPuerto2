@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using ControlPuerto2.Models;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ namespace ControlPuerto2.Data
     public class DataConexion
     {
         public static MySqlConnection conexionBD { get; set; }
-        private static string connectionString = "Database = b385; Data Source = 192.168.1.100; User Id = root; Password= *Qwerty1*";
+        private static string connectionString { get; set; }
 
         public static async Task<MySqlConnection> conectar()
         {
@@ -26,10 +27,10 @@ namespace ControlPuerto2.Data
             }
             return null;
         }
-        public static void getConnectionString()
+        public static void getConnectionString(List<EmpresaModel> empresa)
         {
-            //connectionString = $"Database = {empresa[0].empresa}; Data Source = {empresa[0].ipserver}; User Id = {empresa[0].usuario}; Password= {empresa[0].serverPassword}";
-            //connectionString = "Database = b385; Data Source = 192.168.1.189; User Id = victor; Password= 123456";
+            connectionString = $"Database = {empresa[0].empresa}; Data Source = {empresa[0].ipserver}; User Id = {empresa[0].usuario}; Password= {empresa[0].serverPassword}";
+            //connectionString = "Database = b385; Data Source = 192.168.1.100; User Id = root; Password= *Qwerty1*";
         }
 
         public static void abrir()

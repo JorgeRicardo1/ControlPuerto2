@@ -1,7 +1,9 @@
-﻿using ControlPuerto2.ViewModels;
+﻿using ControlPuerto2.Models;
+using ControlPuerto2.ViewModels;
 using ControlPuerto2.Views;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ControlPuerto2
@@ -11,7 +13,6 @@ namespace ControlPuerto2
         public AppShell()
         {
             InitializeComponent();
-
             Routing.RegisterRoute(nameof(AsignacionPage), typeof(AsignacionPage));
             Routing.RegisterRoute(nameof(DetalleOperarioPage), typeof(DetalleOperarioPage));
             Routing.RegisterRoute(nameof(DocumentosBarcoPage), typeof(DocumentosBarcoPage));
